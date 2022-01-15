@@ -1,6 +1,10 @@
+import NavigationBar from '../navbar/navbar.component';
+
 const Header = () => {
   return (
-      <header>Header</header>
+      <header>
+        <NavigationBar />
+      </header>
   )
 }
 
