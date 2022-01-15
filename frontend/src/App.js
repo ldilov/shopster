@@ -1,8 +1,15 @@
+import Header from './components/header/header.component';
+import Footer from './components/footer/footer.component';
+
 function App() {
   return (
-    <h1>
-      Welcome
-    </h1>
+    <>
+      <Header />
+      <main>
+        <h1>Welcome to shopster</h1>
+      </main>
+      <Footer />
+    </>
   );
 }
 
