@@ -1,6 +1,6 @@
 import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
 
-const ProductDetailsTable = ({data}) => {
+const ProductDetailsTable = ({data, isDisabled}) => {
   return (
       <Card>
         <ListGroup variant='flush'>
@@ -17,7 +17,7 @@ const ProductDetailsTable = ({data}) => {
             </ListGroup.Item>
           ))}
           <ListGroup.Item>
-            <Button className='btn-block btn-primary' type='button'>Add To Cart</Button>
+            <Button className='btn-block btn-primary' type='button' disabled={isDisabled}>Add To Cart</Button>
           </ListGroup.Item>
         </ListGroup>
       </Card>
