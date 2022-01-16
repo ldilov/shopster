@@ -1,14 +1,22 @@
 import { Link, useParams } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import { Spinner } from 'react-bootstrap';
-
-import products from '../data/mock/products';
+import axios from 'axios';
 
 const ProductDetails = lazy(() => import('../components/product-details/product-details.component'));
 
 const ProductPage = () => {
   let params = useParams();
-  const product = products.find(p => p._id === params.id);
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const {data} = await axios.get(`/api/products/${params.id}`);
+      setProduct(data);
+    }
+
+    fetchProducts();
+  }, [params]);
 
   return (
       <>
