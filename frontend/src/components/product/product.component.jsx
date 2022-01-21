@@ -1,12 +1,20 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+
 import { Card } from 'react-bootstrap';
-import Rating from '../rating/rating.component';
 import { Link } from 'react-router-dom';
+
+import Rating from '../rating/rating.component';
+
+import { imageContainer, productImage } from './product.styles';
 
 const Product = ({product}) => {
   return (
     <Card className='my-3 p-3 rounded'>
       <Link to={`/product/${product._id}`}>
-        <Card.Img src={product.image} variant={'top'} />
+        <div css={imageContainer} >
+          <Card.Img src={product.image} variant={'top'} css={productImage} />
+        </div>
       </Link>
       <Card.Body>
         <Link to={`/product/${product._id}`}>

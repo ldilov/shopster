@@ -14,6 +14,7 @@
   "author": "Lazar Dilov",
   "license": "MIT",
   "dependencies": {
+    "colors": "^1.4.0",
     "concurrently": "^7.0.0",
     "dotenv": "^12.0.3",
     "mongoose": "^6.1.6"
