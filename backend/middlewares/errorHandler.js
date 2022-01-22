@@ -7,6 +7,8 @@ function ErrorHandler(err, req, res, next) {
     message: err.message,
     statusCode: statusCode
   });
+
+  next();
 }
 
 export default ErrorHandler;
