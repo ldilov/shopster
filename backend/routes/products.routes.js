@@ -6,8 +6,8 @@ import Product from '../data/models/ProductModel.js';
 
 const router = express.Router();
 
-// @desc Fetch all products
-// @route GET /api/products
+// @desc Fetch all product-list
+// @route GET /api/product-list
 // @access Public
 router.get('/', asyncHandler(async (req, res) => {
   const products = await Product.find({});
@@ -15,8 +15,8 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 
-// @desc Fetch single products
-// @route GET /api/products/:id
+// @desc Fetch single product-list
+// @route GET /api/product-list/:id
 // @access Public
 router.get('/:id', asyncHandler(async (req, res) => {
   if(!mongoose.Types.ObjectId.isValid(req.params.id)){

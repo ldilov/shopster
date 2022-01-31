@@ -1,21 +1,21 @@
 import { Col, Row } from 'react-bootstrap';
 
 import Product from '../components/product/product.component';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 
-const HomePage = () => {
-  const [products, setProducts] = useState([]);
+import { useEffect } from 'react';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import {
+  selectProductListError,
+  selectProductListIsLoading,
+  selectProductListItems
+} from '../redux/product-list/product-list.selectors';
+import { fetchProductsStart } from '../redux/product-list/product-list.actions';
 
+const HomePage = ({ fetchAllProducts, products, isLoading, error }) => {
   useEffect(() => {
-    const fetchProducts = async () => {
-      const {data} = await axios.get('/api/products');
-      setProducts(data);
-    };
-
-    fetchProducts();
-  }, []);
-
+    fetchAllProducts();
+  }, [fetchAllProducts]);
 
   return (
     <>
@@ -31,4 +31,15 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+const mapStateToProps = createStructuredSelector({
+  products: selectProductListItems,
+  isLoading: selectProductListIsLoading,
+  error: selectProductListError
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchAllProducts: () => dispatch(fetchProductsStart())
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
