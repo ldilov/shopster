@@ -9,7 +9,6 @@ const Main = ({children}) => {
   return (
       <main css={ mainContent }>
         <Container>
-          <h1>Welcome to shopster</h1>
           { children }
         </Container>
       </main>

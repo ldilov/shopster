@@ -1,6 +1,7 @@
 import { Col, Row } from 'react-bootstrap';
 
 import Product from '../components/product/product.component';
+import Message, { TYPES } from '../components/message/message.component';
 
 import { useEffect } from 'react';
 import { createStructuredSelector } from 'reselect';
@@ -12,22 +13,29 @@ import {
 } from '../redux/product-list/product-list.selectors';
 import { fetchProductsStart } from '../redux/product-list/product-list.actions';
 
-const HomePage = ({ fetchAllProducts, products, isLoading, error }) => {
+const HomePage = ({fetchAllProducts, products, isLoading, error}) => {
   useEffect(() => {
     fetchAllProducts();
   }, [fetchAllProducts]);
 
   return (
-    <>
-      <h1>Latest products</h1>
-      <Row>
-        {products.map(product => (
-            <Col sm={12} md={6} lg={4} xlg={2} key={product._id} >
-              <Product product={product} />
-            </Col>
-        ))}
-      </Row>
-    </>
+      <>
+        <h1>Latest products</h1>
+        { error
+            ? (
+                <Message content={ error } type={ TYPES.DANGER }/>
+            )
+            : (
+                <Row>
+                  { products.map(product => (
+                      <Col sm={ 12 } md={ 6 } lg={ 4 } xlg={ 2 } key={ product._id }>
+                        <Product product={ product }/>
+                      </Col>
+                  )) }
+                </Row>
+            )
+        }
+      </>
   );
 };
 
