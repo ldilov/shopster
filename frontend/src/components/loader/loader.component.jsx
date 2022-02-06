@@ -7,7 +7,7 @@ import { loaderSpinner } from './loader.styles';
 const Loader = () => {
   return (
     <Spinner animation='border' role='status' css={ loaderSpinner }>
-      <span className='sr-only'>Loading...</span>
+      <span className='visually-hidden sr-only'>Loading...</span>
     </Spinner>
   );
 }

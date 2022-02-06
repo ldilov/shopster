@@ -1,9 +1,8 @@
 import { Col, Row } from 'react-bootstrap';
 
-import Product from '../components/product/product.component';
 import Message, { TYPES } from '../components/message/message.component';
 
-import { useEffect } from 'react';
+import { lazy, useEffect, Suspense } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import {
@@ -12,6 +11,10 @@ import {
   selectProductListItems
 } from '../redux/product-list/product-list.selectors';
 import { fetchProductsStart } from '../redux/product-list/product-list.actions';
+import Loader from '../components/loader/loader.component';
+
+// Lazy loaded components
+const Product = lazy(() => import('../components/product/product.component'));
 
 const HomePage = ({fetchAllProducts, products, isLoading, error}) => {
   useEffect(() => {
@@ -21,18 +24,27 @@ const HomePage = ({fetchAllProducts, products, isLoading, error}) => {
   return (
       <>
         <h1>Latest products</h1>
-        { error
+        {
+            isLoading
             ? (
-                <Message content={ error } type={ TYPES.DANGER }/>
+                <Loader />
             )
             : (
-                <Row>
-                  { products.map(product => (
-                      <Col sm={ 12 } md={ 6 } lg={ 4 } xlg={ 2 } key={ product._id }>
-                        <Product product={ product }/>
-                      </Col>
-                  )) }
-                </Row>
+                error
+                ? (
+                    <Message content={ error } type={ TYPES.DANGER }/>
+                )
+                : (
+                    <Row>
+                      { products.map(product => (
+                          <Suspense fallback={null}>
+                            <Col sm={ 12 } md={ 6 } lg={ 4 } xlg={ 2 } key={ product._id }>
+                              <Product product={ product }/>
+                            </Col>
+                          </Suspense>
+                      )) }
+                    </Row>
+                )
             )
         }
       </>
