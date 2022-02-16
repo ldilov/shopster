@@ -1,8 +1,12 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import asyncHandler from 'express-async-handler';
 
-import Product from '../data/models/ProductModel.js';
+import {
+  buildErrorResponse,
+  buildResponse,
+  getProductsFromDb,
+  getSingleProductFromDb
+} from '../data/services/products.service.js';;
 
 const router = express.Router();
 
@@ -10,9 +14,10 @@ const router = express.Router();
 // @route GET /api/product-list
 // @access Public
 router.get('/', asyncHandler(async (req, res) => {
-  const products = await Product.find({});
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  res.json(products);
+  const products = await getProductsFromDb();
+  const { statusCode, data} = buildResponse(products);
+
+  res.status(statusCode).json(data);
 }));
 
 
@@ -20,22 +25,13 @@ router.get('/', asyncHandler(async (req, res) => {
 // @route GET /api/product-list/:id
 // @access Public
 router.get('/:id', asyncHandler(async (req, res) => {
-  if(!mongoose.Types.ObjectId.isValid(req.params.id)){
-    res.status(400).json({
-      message: 'Invalid product id!'
-    });
-  }
-
-  const product = await Product.findById(req.params.id);
-
-  await new Promise(resolve => setTimeout(resolve, 1000));
-
-  if(product) {
-    res.json(product);
-  } else {
-    res.status(404).json({
-      message: 'Product not found'
-    });
+  try {
+    const result = await getSingleProductFromDb(req.params.id);
+    const { statusCode, data} = buildResponse(result);
+    res.status(statusCode).json(data);
+  } catch (err) {
+    const { statusCode, message } = buildErrorResponse(err);
+    res.status(statusCode).json(message);
   }
 }));
 
