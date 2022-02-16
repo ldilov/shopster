@@ -6,7 +6,7 @@ import {
   buildResponse,
   getProductsFromDb,
   getSingleProductFromDb
-} from '../data/services/products.service.js';;
+} from '../data/services/products.service.js';
 
 const router = express.Router();
 
