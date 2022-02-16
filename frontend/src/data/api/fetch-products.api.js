@@ -4,7 +4,7 @@ import ApiFetchError from './errors/ApiFetchError';
 
 const basePath = "product-list";
 
-const fetchApiProducts = async () => {
+export const fetchApiProducts = async () => {
   try {
     const { data } = await ApiClient.get(basePath);
     return data;
@@ -13,4 +13,14 @@ const fetchApiProducts = async () => {
   }
 }
 
-export default fetchApiProducts;
+export const fetchApiSingleProduct = async (id) => {
+  const path = `${basePath}/${id}`
+
+  try {
+    const { data } = await ApiClient.get(path);
+    return data;
+  } catch (err) {
+    throw new ApiFetchError(err, METHODS.GET, path);
+  }
+}
+

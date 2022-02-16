@@ -28,6 +28,8 @@ router.get('/:id', asyncHandler(async (req, res) => {
 
   const product = await Product.findById(req.params.id);
 
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
   if(product) {
     res.json(product);
   } else {

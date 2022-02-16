@@ -1,0 +1,11 @@
+export const PRODUCT_INITIAL_STATE = {
+  product: null,
+  loading: false,
+  error: null
+};
+
+export const PRODUCT_ACTION_TYPES = {
+  FETCH_PRODUCT_START: "FETCH_PRODUCT_START",
+  FETCH_PRODUCT_SUCCESS: "FETCH_PRODUCT_SUCCESS",
+  FETCH_PRODUCT_FAIL: "FETCH_PRODUCT_FAIL",
+};
