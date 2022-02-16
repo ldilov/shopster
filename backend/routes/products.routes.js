@@ -11,6 +11,7 @@ const router = express.Router();
 // @access Public
 router.get('/', asyncHandler(async (req, res) => {
   const products = await Product.find({});
+  await new Promise(resolve => setTimeout(resolve, 1000));
   res.json(products);
 }));
 

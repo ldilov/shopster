@@ -1,8 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
-import cors from 'cors';
 import connectDB from './config/db.js';
+import helmet from 'helmet';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -15,7 +16,14 @@ connectDB();
 
 const app = express();
 
-app.use(cors())
+const corsOptions = {
+  origin: 'http://localhost:3000'
+}
+
+app.disable('x-powered-by')
+
+app.use(cors(corsOptions))
+app.use(helmet());
 app.use(PathParamValidator);
 app.use(ErrorHandler);
 
