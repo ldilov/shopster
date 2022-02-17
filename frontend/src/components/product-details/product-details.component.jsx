@@ -22,7 +22,7 @@ const ProductDetails = ({product}) => {
         </Col>
         <Col md={3}>
           <Suspense fallback={<Spinner animation="border" />}>
-            <ProductDetailsTable data={dataMatrix} isDisabled={product.countInStock < 1} />
+            <ProductDetailsTable data={dataMatrix} isInStock={product.countInStock < 1} product={product} />
           </Suspense>
         </Col>
       </Row>

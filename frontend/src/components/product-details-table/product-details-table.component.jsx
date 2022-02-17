@@ -1,6 +1,13 @@
 import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-const ProductDetailsTable = ({data, isDisabled}) => {
+import { addCartItem } from '../../redux/cart/cart.actions';
+
+const ProductDetailsTable = ({data, isInStock, product, addCartItem}) => {
+  const addToCartHandler = () => {
+    addCartItem(product);
+  };
+
   return (
       <Card>
         <ListGroup variant='flush'>
@@ -17,11 +24,20 @@ const ProductDetailsTable = ({data, isDisabled}) => {
             </ListGroup.Item>
           ))}
           <ListGroup.Item>
-            <Button className='btn-block btn-primary' type='button' disabled={isDisabled}>Add To Cart</Button>
+            <Button
+                className='btn-block btn-primary'
+                type='button'
+                onClick={addToCartHandler}
+                disabled={isInStock}
+            >Add To Cart</Button>
           </ListGroup.Item>
         </ListGroup>
       </Card>
   );
 };
 
-export default ProductDetailsTable;
+const mapDispatchToProps = (dispatch) => ({
+  addCartItem: (product) => dispatch(addCartItem(product))
+});
+
+export default connect(null, mapDispatchToProps)(ProductDetailsTable);
