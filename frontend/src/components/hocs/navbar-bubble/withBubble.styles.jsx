@@ -5,12 +5,13 @@ export const cartBubble = {
   backgroundColor: 'red',
   color: 'white',
   fontWeight: 'bold',
-  fontSize: '12px',
+  fontSize: '10px',
   textAlign: 'center',
   verticalAlign: 'middle',
-  padding: '5px',
+  paddingRight: '1px',
+  paddingTop: '7px',
   height: '17px',
   width: '17px',
-  lineHeight: '7px',
+  lineHeight: '3px',
   borderRadius: '50%'
 }
