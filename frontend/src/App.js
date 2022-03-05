@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 
 const HomePage = lazy(() => import('./pages/homepage.component'));
 const ProductPage = lazy(() => import('./pages/productpage.component'));
+const CartPage = lazy(() => import('./pages/cartpage.component'));
 
 function App() {
   return (
@@ -29,6 +30,15 @@ function App() {
                 element={
                   <Suspense fallback={<div>Loading...</div>}>
                     <ProductPage />
+                  </Suspense>
+                }
+            />
+            <Route
+                exact
+                path="/cart"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <CartPage />
                   </Suspense>
                 }
             />

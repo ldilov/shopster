@@ -28,7 +28,7 @@ const Icons = {
   [TYPES.DANGER]: <FaExclamationCircle/>,
 };
 
-const Message = ({content, type}) => {
+const Message = ({content, type, isPrefixed}) => {
   const [isVisible, setIsVisible] = useState(true);
 
   let styleType = null;
@@ -39,24 +39,26 @@ const Message = ({content, type}) => {
     case TYPES.WARNING:
       styleType = alertWarning;
       styleIcon = Icons[TYPES.WARNING];
-      title = 'warning';
+      title = 'warning:';
       break;
     case TYPES.SUCCESS:
       styleType = alertSuccess;
       styleIcon = Icons[TYPES.SUCCESS];
-      title = 'success';
+      title = 'success:';
       break;
     case TYPES.DANGER:
       styleType = alertDanger;
       styleIcon = Icons[TYPES.DANGER];
-      title = 'error';
+      title = 'error:';
       break;
     default:
       styleType = alertInfo;
       styleIcon = Icons[TYPES.INFO];
-      title = 'info';
+      title = 'info:';
       break;
   }
+
+  title = isPrefixed ? title : null;
 
   return (
       <>
@@ -72,7 +74,7 @@ const Message = ({content, type}) => {
                               onClick={ () => setIsVisible(false) }>
                         <span>clear</span>
                       </button>
-                      <b css={ alertTitle }>{ title }:</b> { content }
+                      <b css={ alertTitle }>{ title }</b>  { content }
                     </div>
                   </div>
               )
