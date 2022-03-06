@@ -2,7 +2,9 @@
 import { css } from '@emotion/react';
 
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-import { card, cartSummary, h4Title, title } from './cart-summary-card.styles';
+import { card, cartSummary, title } from './cart-summary-card.styles';
+import CartRowForm from '../layout/cart-row-form/cart-row-form.component';
+import CartTitle from '../layout/cart-title/cart-title.component';
 
 const CartSummaryCard = ({total, count, subTotal}) => {
   return (
@@ -21,44 +23,26 @@ const CartSummaryCard = ({total, count, subTotal}) => {
                     <span>SUBTOTAL: ${ subTotal }</span>
                   </Col>
                 </Row>
-                <Row className="py-4">
-                  <Row>
-                    <Col>
-                      <h4 css={h4Title}>Coupons</h4>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <Form.Control
-                          size="sm"
-                          type="text"
-                          placeholder="Coupon code"
-                          id="couponCode"
-                      />
-                    </Col>
-                  </Row>
-                </Row>
-                <Row className="py-4">
-                  <Row>
-                    <Col>
-                      <h4 css={h4Title}>Shipping</h4>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                      <Form.Select
-                          size="sm"
-                          id="shipping"
-                      >
-                        <option>Choose shipping</option>
-                        <option value="shippingDefault">Default shipping - $1</option>
-                      </Form.Select>
-                    </Col>
-                  </Row>
-                </Row>
+                <CartRowForm title="Coupons">
+                  <Form.Control
+                      size="sm"
+                      type="text"
+                      placeholder="Coupon code"
+                      id="couponCode"
+                  />
+                </CartRowForm>
+                <CartRowForm title="Shipping">
+                  <Form.Select
+                      size="sm"
+                      id="shipping"
+                  >
+                    <option>Choose shipping</option>
+                    <option value="shippingDefault">Default shipping - $1</option>
+                  </Form.Select>
+                </CartRowForm>
               </Row>
               <hr/>
-              <h4 css={h4Title}>TOTAL: ${ total }</h4>
+              <CartTitle>TOTAL: ${ total }</CartTitle>
               <Button
                   className='btn-block btn-primary'
                   type='button'
