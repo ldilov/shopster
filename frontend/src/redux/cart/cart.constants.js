@@ -1,3 +1,6 @@
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
+import sessionStorage from 'redux-persist/lib/storage/session';
+
 export const DEFAULT_ITEMS_COUNT = 0;
 export const DEFAULT_ITEMS_TOTAL_PRICE = 0;
 
@@ -12,3 +15,9 @@ export const CART_ACTION_TYPES = {
   CLEAR_CART_ITEM: 'CLEAR_CART_ITEM',
   CLEAR_CART: 'CLEAR_CART'
 };
+
+export const persistCartConfig = {
+  key: 'cart',
+  storage: sessionStorage,
+  stateReconciler: autoMergeLevel2,
+}

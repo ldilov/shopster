@@ -25,27 +25,27 @@ const HomePage = ({fetchAllProducts, products, isLoading, error}) => {
       <>
         <h1>Latest products</h1>
         {
-            isLoading
-            ? (
-                <Loader />
-            )
-            : (
-                error
-                ? (
-                    <Message content={ error } type={ TYPES.DANGER }/>
-                )
-                : (
-                    <Row>
-                      { products.map(product => (
-                          <Suspense fallback={null}>
-                            <Col sm={ 12 } md={ 6 } lg={ 4 } xlg={ 2 } key={ product._id }>
-                              <Product product={ product }/>
-                            </Col>
-                          </Suspense>
-                      )) }
-                    </Row>
-                )
-            )
+          isLoading
+              ? (
+                  <Loader/>
+              )
+              : (
+                  error
+                      ? (
+                          <Message content={ error } type={ TYPES.DANGER }/>
+                      )
+                      : (
+                          <Row>
+                            <Suspense fallback={<Loader />}>
+                            { products.map(product => (
+                                <Col sm={ 12 } md={ 6 } lg={ 4 } xlg={ 2 } key={ product._id }>
+                                  <Product product={ product }/>
+                                </Col>
+                            )) }
+                            </Suspense>
+                          </Row>
+                      )
+              )
         }
       </>
   );
