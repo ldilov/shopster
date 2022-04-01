@@ -9,7 +9,7 @@ import { BsArrowLeftShort } from 'react-icons/bs';
 
 import { backToShop, card, cardFrame, title } from './cart-shopping-card.styles';
 
-const CartShoppingCard = ({ items }) => {
+const CartShoppingCard = ({ items, onDelete }) => {
   return (
       <Card border="light" css={{...card, ...cardFrame}}>
         <Card.Body css={card}>

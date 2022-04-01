@@ -1,10 +1,10 @@
 import { Button, Col, Form, Image, ListGroup, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaTrash } from 'react-icons/fa';
+import { FaAngleLeft, FaAngleRight, FaTrash } from 'react-icons/fa';
 
 import ColumnCentered from '../layout/column-centered.component';
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, onDelete, onIncreaseQty, onDecreaseQty }) => {
   return (
       <ListGroup.Item>
         <Row>
@@ -18,15 +18,20 @@ const CartItem = ({ item }) => {
             ${ item.price }
           </ColumnCentered>
           <ColumnCentered md={1}>
-            <Form.Control
-                className="p-1"
-                type="text"
-                id="productQuantity"
-                defaultValue={ item.quantity }
-            />
+            <div className='d-flex flex-row justify-content-center align-items-center'>
+              <FaAngleLeft onClick={() => onDecreaseQty(item)} role='button' />
+              <Form.Control
+                  className="p-1"
+                  type="text"
+                  id="productQuantity"
+                  value={ item.quantity }
+              />
+              <FaAngleRight onClick={() => onIncreaseQty(item)} role='button' />
+            </div>
+
           </ColumnCentered>
           <ColumnCentered md={1}>
-            <Button type="button" variant="light" onClick={ () => true }>
+            <Button type="button" variant="light" onClick={ () => onDelete(item) }>
               <FaTrash color='red'/>
             </Button>
           </ColumnCentered>

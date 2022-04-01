@@ -12,7 +12,7 @@ const CartInfoCard = ({ cartItems, total, subTotal, count }) => {
       <div css={cardFrameStyle}>
         <Row>
           <Col md={ 8 }>
-            <CartShoppingCard items={ cartItems }/>
+            <CartShoppingCard items={ cartItems } />
           </Col>
           <Col md={ 4 }>
             <CartSummaryCard total={ total } subTotal={ subTotal } count={ count }/>
