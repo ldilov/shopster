@@ -1,6 +1,6 @@
 const mutateCartItemQuantity = (cartItems, item, mutator) => {
   return cartItems.map((cartItem) =>
-      cartItem._id === item._id ? { ...cartItem, quantity: cartItem.quantity + mutator } : cartItem
+      cartItem._id === item._id ? { ...cartItem, quantity: Number(cartItem.quantity) + mutator } : cartItem
   );
 };
 
