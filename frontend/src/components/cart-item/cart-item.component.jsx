@@ -4,7 +4,7 @@ import { FaAngleLeft, FaAngleRight, FaTrash } from 'react-icons/fa';
 
 import ColumnCentered from '../layout/column-centered.component';
 
-const CartItem = ({ item, onDelete, onIncreaseQty, onDecreaseQty }) => {
+const CartItem = ({ item, onDelete, onIncreaseQty, onDecreaseQty, onSetQty }) => {
   return (
       <ListGroup.Item>
         <Row>
@@ -14,10 +14,10 @@ const CartItem = ({ item, onDelete, onIncreaseQty, onDecreaseQty }) => {
           <ColumnCentered md={4}>
             <Link to={ `/product/${ item.product }` }>{ item.name }</Link>
           </ColumnCentered>
-          <ColumnCentered md={3}>
+          <ColumnCentered md={2}>
             ${ item.price }
           </ColumnCentered>
-          <ColumnCentered md={1}>
+          <ColumnCentered md={2}>
             <div className='d-flex flex-row justify-content-center align-items-center'>
               <FaAngleLeft onClick={() => onDecreaseQty(item)} role='button' />
               <Form.Control
@@ -25,6 +25,7 @@ const CartItem = ({ item, onDelete, onIncreaseQty, onDecreaseQty }) => {
                   type="text"
                   id="productQuantity"
                   value={ item.quantity }
+                  onChange={(e) => onSetQty(item, e.currentTarget.value)}
               />
               <FaAngleRight onClick={() => onIncreaseQty(item)} role='button' />
             </div>

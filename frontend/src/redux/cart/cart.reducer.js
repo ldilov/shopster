@@ -1,5 +1,5 @@
 import { CART_ACTION_TYPES, CART_INITIAL_STATE } from './cart.constants';
-import { addItemToCart, decreaseItemQuantity } from './cart.utils';
+import { addItemToCart, decreaseItemQuantity, setCartItemQty } from './cart.utils';
 
 export const cartReducer = (state = CART_INITIAL_STATE, action) => {
   switch (action.type) {
@@ -7,6 +7,16 @@ export const cartReducer = (state = CART_INITIAL_STATE, action) => {
       return {
         ...state,
         items: addItemToCart(state.items, action.payload)
+      };
+    case CART_ACTION_TYPES.INCREASE_CART_ITEM_QUANTITY:
+      return {
+        ...state,
+        items: addItemToCart(state.items, action.payload)
+      };
+    case CART_ACTION_TYPES.SET_CART_ITEM_QUANTITY:
+      return {
+        ...state,
+        items: setCartItemQty(state.items, action.payload[0], action.payload[1])
       };
     case CART_ACTION_TYPES.DECREASE_CART_ITEM_QUANTITY:
       return {

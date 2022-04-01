@@ -18,6 +18,7 @@ const CartItemsList = ({ items }) => {
                   onDelete={actions.deleteItem}
                   onIncreaseQty={actions.increaseQty}
                   onDecreaseQty={actions.decreaseQty}
+                  onSetQty={actions.setQty}
               />
           ))
         }

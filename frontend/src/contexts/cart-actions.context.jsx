@@ -2,11 +2,12 @@ import React from 'react';
 
 export const CartActionsContext = React.createContext();
 
-export const CartActionsContextProvider = ({ children, deleteItem, increaseQty, decreaseQty }) => {
+export const CartActionsContextProvider = ({ children, deleteItem, increaseQty, decreaseQty, setQty }) => {
   const actions = {
     deleteItem,
     increaseQty,
-    decreaseQty
+    decreaseQty,
+    setQty
   };
 
   return (

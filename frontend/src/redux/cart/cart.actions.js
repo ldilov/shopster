@@ -10,6 +10,11 @@ export const removeCartItem = (item) => ({
   payload: item
 });
 
+export const setQuantity = (item, qty) => ({
+  type: ACTION_TYPES.SET_CART_ITEM_QUANTITY,
+  payload: [item, qty]
+});
+
 export const decreaseQuantity = (item) => ({
   type: ACTION_TYPES.DECREASE_CART_ITEM_QUANTITY,
   payload: item

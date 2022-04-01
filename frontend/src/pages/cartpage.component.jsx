@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 
 import { selectCartItems } from '../redux/cart/cart.selectors';
 import Loader from '../components/loader/loader.component';
-import { decreaseQuantity, increaseQuantity, removeCartItem } from '../redux/cart/cart.actions';
+import { decreaseQuantity, increaseQuantity, removeCartItem, setQuantity } from '../redux/cart/cart.actions';
 import { CartActionsContextProvider } from '../contexts/cart-actions.context';
 
 const Message = lazy(() => import('../components/message/message.component'));
 const CartInfoCard = lazy(() => import('../components/cart-info-card/cart-info-card.component'));
 
-const CartPage = ({ cartItems, deleteItem, increaseQty, decreaseQty }) => {
+const CartPage = ({ cartItems, deleteItem, increaseQty, decreaseQty, setQty }) => {
   return (
       <>
       {
@@ -28,6 +28,7 @@ const CartPage = ({ cartItems, deleteItem, increaseQty, decreaseQty }) => {
                       deleteItem={deleteItem}
                       increaseQty={increaseQty}
                       decreaseQty={decreaseQty}
+                      setQty={setQty}
                   >
                     <CartInfoCard
                         cartItems={cartItems}
@@ -50,7 +51,8 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   deleteItem: (item) => dispatch(removeCartItem(item)),
   increaseQty: (item) => dispatch(increaseQuantity(item)),
-  decreaseQty: (item) => dispatch(decreaseQuantity(item))
+  decreaseQty: (item) => dispatch(decreaseQuantity(item)),
+  setQty: (item, value) => dispatch(setQuantity(item, value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartPage);
