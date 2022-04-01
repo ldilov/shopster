@@ -1,4 +1,5 @@
 import { Col, Row } from 'react-bootstrap';
+import { Helmet } from "react-helmet";
 
 import Message, { TYPES } from '../components/message/message.component';
 
@@ -12,6 +13,7 @@ import {
 } from '../redux/product-list/product-list.selectors';
 import { fetchProductsStart } from '../redux/product-list/product-list.actions';
 import Loader from '../components/loader/loader.component';
+import Meta from '../components/meta/meta.component';
 
 // Lazy loaded components
 const Product = lazy(() => import('../components/product/product.component'));
@@ -23,6 +25,7 @@ const HomePage = ({fetchAllProducts, products, isLoading, error}) => {
 
   return (
       <>
+        <Meta content="Homepage" />
         <h1>Latest products</h1>
         {
           isLoading

@@ -12,7 +12,7 @@ const CartItem = ({ item, onDelete, onIncreaseQty, onDecreaseQty, onSetQty }) =>
             <Image src={ item.image } alt={ item.name } fluid rounded/>
           </Col>
           <ColumnCentered md={4}>
-            <Link to={ `/product/${ item.product }` }>{ item.name }</Link>
+            <Link to={ `/product/${ item._id }` }>{ item.name }</Link>
           </ColumnCentered>
           <ColumnCentered md={2}>
             ${ item.price }

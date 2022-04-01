@@ -6,6 +6,8 @@ import { selectCartItems } from '../redux/cart/cart.selectors';
 import Loader from '../components/loader/loader.component';
 import { decreaseQuantity, increaseQuantity, removeCartItem, setQuantity } from '../redux/cart/cart.actions';
 import { CartActionsContextProvider } from '../contexts/cart-actions.context';
+import { Helmet } from 'react-helmet';
+import Meta from '../components/meta/meta.component';
 
 const Message = lazy(() => import('../components/message/message.component'));
 const CartInfoCard = lazy(() => import('../components/cart-info-card/cart-info-card.component'));
@@ -13,7 +15,9 @@ const CartInfoCard = lazy(() => import('../components/cart-info-card/cart-info-c
 const CartPage = ({ cartItems, deleteItem, increaseQty, decreaseQty, setQty }) => {
   return (
       <>
-      {
+        <Meta content="Cart" />
+
+        {
         cartItems.length === 0
             ? (
                 <div className="my-2">\

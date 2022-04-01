@@ -3,11 +3,13 @@ import { lazy, Suspense, useEffect } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
+import { Helmet } from "react-helmet";
 
 import { fetchProductStart } from '../redux/product/product.actions';
 import { selectProductData, selectProductError, selectProductLoading } from '../redux/product/product.selectors';
 import Loader from '../components/loader/loader.component';
 import Message, { TYPES } from '../components/message/message.component';
+import Meta from '../components/meta/meta.component';
 
 const ProductDetails = lazy(() => import('../components/product-details/product-details.component'));
 
@@ -21,6 +23,7 @@ const ProductPage = ({ fetchProductData, product, isLoading, error }) => {
 
   let result = (
       <>
+        <Meta content= {product?.name ?? "Loading"} />
         <Link className="btn btn-secondary my-3" to="/">Go Back</Link>
         <Suspense fallback={<Spinner animation="grow" /> }>
           <ProductDetails product={ product }/>
