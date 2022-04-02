@@ -9,7 +9,7 @@ export function* fetchSingleProduct(action) {
     const data = yield call(fetchApiSingleProduct, action.id);
     yield put(fetchProductSuccess(data));
   } catch(err) {
-    yield put(fetchProductFail(`${err.message}: ${err.innerError.message}`));
+    yield put(fetchProductFail(`${err.message}`));
   }
 }
 

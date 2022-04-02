@@ -9,7 +9,7 @@ export const fetchApiProducts = async () => {
     const { data } = await ApiClient.get(basePath);
     return data;
   } catch (err) {
-    throw new ApiFetchError(err, METHODS.GET, basePath);
+    throw new ApiFetchError(err.response.data.message, METHODS.GET, basePath);
   }
 }
 
@@ -20,7 +20,7 @@ export const fetchApiSingleProduct = async (id) => {
     const { data } = await ApiClient.get(path);
     return data;
   } catch (err) {
-    throw new ApiFetchError(err, METHODS.GET, path);
+    throw new ApiFetchError(err.response.data.message, METHODS.GET, path);
   }
 }
 

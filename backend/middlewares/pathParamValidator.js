@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 import InvalidPathParamError from '../exceptions/InvalidPathParamError.js';
 
-const PATH_PARAM_REGEX = /^\/api\/(?<controller>[a-z]+)\/(?<pathParam>\w+)$/;
+const PATH_PARAM_REGEX = /^\/api\/(?<controller>[a-z]+)\/(?<pathParam>[a-zA-Z]+[0-9]|[0-9]+[a-zA-Z])$/;
 
 function PathParamValidator(req, res, next) {
   const match = req.url.match(PATH_PARAM_REGEX);

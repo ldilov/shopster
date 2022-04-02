@@ -31,10 +31,10 @@ const ProductPage = ({ fetchProductData, product, isLoading, error }) => {
       </>
   );
 
-  if (isLoading || !product) {
-    result =  ( <Loader /> );
-  } else if (error) {
+  if (error) {
     result = ( <Message content={ error } type={ TYPES.DANGER } /> );
+  } else if (isLoading || !product) {
+    result =  ( <Loader /> );
   }
 
   return (

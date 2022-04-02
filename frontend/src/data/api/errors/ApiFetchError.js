@@ -1,10 +1,9 @@
 class ApiFetchError extends Error {
-  constructor(innerErr, method, path) {
+  constructor(message, method, path) {
     super();
 
-    this.message = `Error during performing ${method.toString().toUpperCase()} /${path} request!`;
+    this.message = `Error during performing ${method.toString().toUpperCase()} /${path} request! ${message}`;
     this.name = ApiFetchError.constructor.name;
-    this.innerError = innerErr;
   }
 }
 

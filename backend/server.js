@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { urlencoded } from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
 import connectDB from './config/db.js';
@@ -11,6 +11,8 @@ import productsRoutes from './routes/products.routes.js';
 
 import PathParamValidator from './middlewares/pathParamValidator.js';
 import ErrorHandler from './middlewares/errorHandler.js';
+import authRoutes from './routes/auth.routes.js';
+import bodyparser from 'express';
 
 connectDB();
 
@@ -25,6 +27,8 @@ app.disable('x-powered-by')
 app.use(cors(corsOptions))
 app.use(helmet());
 app.use(PathParamValidator);
+app.use(express.json());
+app.use(express.urlencoded());
 app.use(ErrorHandler);
 
 app.get('/', (req, res) => {
@@ -32,6 +36,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/product-list', productsRoutes);
+app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 5000;
 

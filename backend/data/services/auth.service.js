@@ -5,18 +5,16 @@ import Product from '../models/ProductModel.js';
 import ApiErrorNotFound from '../../exceptions/ApiErrorNotFound.js';
 import ApiErrorBadRequest from '../../exceptions/ApiErrorBadRequest.js';
 import ApiErrorBase from '../../exceptions/ApiErrorBase.js';
+import User from '../models/UserModel.js';
+import ApiErrorUnauthorized from '../../exceptions/ApiErrorUnauthorized.js';
 
-export const getSingleProductFromDb = async (id) => {
-  if(!mongoose.Types.ObjectId.isValid(id)){
-    throw new ApiErrorBadRequest(id, 'Invalid product id!')
-  }
+export const authenticateWithCredentials = async (email, password) => {
+  const user = await User.findOne({ email });
 
-  const product = await Product.findById(id);
-
-  if(product) {
-    return product;
+  if(user && (await user.matchPassword(password))) {
+    return user;
   } else {
-    throw new ApiErrorNotFound(id, 'Product not found');
+    throw new ApiErrorUnauthorized(email, 'User was not found');
   }
 };
 

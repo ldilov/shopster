@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import * as crypto from 'crypto';
 
 const userSchema = mongoose.Schema({
   name: {
@@ -22,6 +23,10 @@ const userSchema = mongoose.Schema({
 }, {
   timestamps: true
 });
+
+userSchema.methods.matchPassword = async function(inputPassword) {
+  return this.password === crypto.createHash('sha256').update(inputPassword).digest('hex');
+};
 
 const User = mongoose.model('User', userSchema);
 
