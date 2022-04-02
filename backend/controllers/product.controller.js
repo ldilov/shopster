@@ -21,14 +21,9 @@ const getProducts = asyncHandler(async (req, res) => {
 // @route GET /api/product-list/:id
 // @access Public
 const getProduct = asyncHandler(async (req, res) => {
-  try {
-    const result = await getSingleProductFromDb(req.params.id);
-    const {statusCode, data} = buildResponse(result);
-    res.status(statusCode).json(data);
-  } catch (err) {
-    const {statusCode, message} = buildErrorResponse(err);
-    res.status(statusCode).json(message);
-  }
+  const result = await getSingleProductFromDb(req.params.id);
+  const {statusCode, data} = buildResponse(result);
+  res.status(statusCode).json(data);
 });
 
 export {

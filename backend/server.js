@@ -12,7 +12,6 @@ import productsRoutes from './routes/products.routes.js';
 import PathParamValidator from './middlewares/pathParamValidator.js';
 import ErrorHandler from './middlewares/errorHandler.js';
 import authRoutes from './routes/auth.routes.js';
-import bodyparser from 'express';
 
 connectDB();
 
